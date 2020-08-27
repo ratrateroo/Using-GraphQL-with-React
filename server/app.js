@@ -5,10 +5,12 @@ const { ApolloServer } = require("apollo-server-express");
 
 const schema = require("./schema/schema");
 const mongoose = require("mongoose");
+const cors = require("cors");
 
 const PORT = 5000;
 
 const app = express();
+//app.use(cors);
 const server = new ApolloServer({ schema });
 server.applyMiddleware({ app });
 
