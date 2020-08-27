@@ -1,9 +1,16 @@
 const express = require("express");
+const bodyParser = require("body-parser");
 const { graphqlHTTP } = require("express-graphql");
+const { ApolloServer } = require("apollo-server-express");
+
 const schema = require("./schema/schema");
 const mongoose = require("mongoose");
 
+const PORT = 5000;
+
 const app = express();
+const server = new ApolloServer({ schema });
+server.applyMiddleware({ app });
 
 mongoose.connect(
   //mongodb+srv://mark:<password>@cluster0.r8v4z.mongodb.net/test
@@ -22,8 +29,10 @@ app.use(
     schema: schema,
     graphiql: true,
   })
+  // bodyParser.json(),
+  // graphqlExpress({ schema: schema })
 );
 
-app.listen(5000, () => {
-  console.log("listening request on port 5000");
+app.listen(PORT, () => {
+  console.log(`listening request on port ${PORT}`);
 });
