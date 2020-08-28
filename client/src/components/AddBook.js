@@ -1,24 +1,21 @@
 import React from "react";
-import { useQuery, gql } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 
-const getAuthorsQuery = gql`
-  {
-    authors {
-      name
-      id
-    }
-  }
-`;
+import { getAuthorsQuery } from "../queries/queries";
 
 const AddBook = (props) => {
-  const { loading, data, authors } = useQuery(getAuthorsQuery);
+  const { loading, data } = useQuery(getAuthorsQuery);
   const displayAuthors = () => {
     if (loading) {
       return <option disabled>Loading Authors</option>;
     } else {
       if (data) {
         return data.authors.map((author) => {
-          return <option>{author.name}</option>;
+          return (
+            <option key={author.id} value={author.id}>
+              {author.name}
+            </option>
+          );
         });
       } else {
         return <option>No Authors</option>;
