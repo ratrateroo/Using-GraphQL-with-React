@@ -23,6 +23,11 @@ const AddBook = (props) => {
     console.log(e.target.value);
   };
 
+  const submitHandler = (event) => {
+    alert(name);
+    event.preventDefault();
+  };
+
   const { loading, data } = useQuery(getAuthorsQuery);
   const displayAuthors = () => {
     if (loading) {
@@ -43,7 +48,7 @@ const AddBook = (props) => {
   };
 
   return (
-    <form id='add-book'>
+    <form id='add-book' onSubmit={submitHandler}>
       <div className='field'>
         <label>Book name:</label>
         <input type='text' onChange={nameChangeHandler} />
