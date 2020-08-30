@@ -32,9 +32,9 @@ const AddBook = (props) => {
     event.preventDefault();
     console.log({ variables: { name: name, genre: genre, authorId: author } });
 
-    //addBook({ variables: { name: name, genre: genre, id: author } });
+    //addBook();
     addBook({
-      variables: { name: "asdf", genre: "asdfasfdasdf", authorId: 1234 },
+      variables: { name: name, genre: genre, authorId: author },
       refetchQueries: [{ query: getBooksQuery }],
     });
   };

@@ -1,10 +1,8 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
+import { getBookQuery } from "../queries/queries";
 
-import { getBooksQuery } from "../queries/queries";
-import BookDetails from "./BookDetails";
-
-const BookList = (props) => {
+const BookDetails = (props) => {
   const { loading, error, data } = useQuery(getBooksQuery);
   console.log("log1", loading, error, data);
 
@@ -24,11 +22,9 @@ const BookList = (props) => {
 
   return (
     <div>
-      <h2>BookList</h2>
-      <ul>{displayBooks()}</ul>
-      <BookDetails />
+      <p>Output book details here.</p>
     </div>
   );
 };
 
-export default BookList;
+export default BookDetails;
