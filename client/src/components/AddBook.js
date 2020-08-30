@@ -1,12 +1,17 @@
 import React, { useState } from "react";
-import { useQuery } from "@apollo/client";
+import { useQuery, useMutation } from "@apollo/client";
 
-import { getAuthorsQuery } from "../queries/queries";
+import {
+  getAuthorsQuery,
+  addBookMutation,
+  getBooksQuery,
+} from "../queries/queries";
 
 const AddBook = (props) => {
   const [name, setName] = useState("");
   const [genre, setGenre] = useState("");
   const [author, setAuthor] = useState("");
+  const [addBook] = useMutation(addBookMutation);
 
   const nameChangeHandler = (e) => {
     setName(e.target.value);
@@ -24,8 +29,14 @@ const AddBook = (props) => {
   };
 
   const submitHandler = (event) => {
-    alert(name);
     event.preventDefault();
+    console.log({ variables: { name: name, genre: genre, authorId: author } });
+
+    //addBook({ variables: { name: name, genre: genre, id: author } });
+    addBook({
+      variables: { name: "asdf", genre: "asdfasfdasdf", authorId: 1234 },
+      refetchQueries: [{ query: getBooksQuery }],
+    });
   };
 
   const { loading, data } = useQuery(getAuthorsQuery);
