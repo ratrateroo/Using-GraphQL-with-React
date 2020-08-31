@@ -18,17 +18,15 @@ const BookDetails = (props) => {
       return <h2>Loading Book</h2>;
     } else {
       if (data) {
-        {
-          console.log("if part");
+        console.log("if part");
 
-          console.log(data);
+        console.log(data);
 
-          //   return Object.entries(data.book).map(([key, val]) => (
-          //     <li key={key}>
-          //       {key}: {val}
-          //     </li>
-          //   ));
-        }
+        //   return Object.entries(data.book).map(([key, val]) => (
+        //     <li key={key}>
+        //       {key}: {val}
+        //     </li>
+        //   ));
       } else {
         return <h2>Details</h2>;
       }
